@@ -1,7 +1,7 @@
 # ScorchCrafter-Juce
 
 
-ScorchCrafter 64 bit Amp Sim Vst3 for Linux.
+ScorchCrafter for JUCE.
 
 Quad core (or more) systems recommended.
 
@@ -23,7 +23,6 @@ Channels 7, 8, 9
 Uses 4 simulated tube overdrive passes
 High-gain overdrive
 
-Made using 64 bit Debian Buster.
 
 
 

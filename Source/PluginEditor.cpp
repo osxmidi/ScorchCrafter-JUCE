@@ -214,67 +214,67 @@ void ScorchAmpAudioProcessorEditor::resized()
 
 void ScorchAmpAudioProcessorEditor::initialiseGUI()
 {
+    addAndMakeVisible(ScorchMasterSlider);
 	ScorchMasterSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchMasterSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchMasterSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
 	ScorchMasterSlider.setTextValueSuffix(" Master");
-	addAndMakeVisible(ScorchMasterSlider);
 	ScorchMasterSliderAttachment.reset(new SliderAttachment(mState, "master", ScorchMasterSlider));	
 	ScorchMasterSlider.addListener(this);
 
+    addAndMakeVisible(ScorchGainSlider);
 	ScorchGainSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchGainSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchGainSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
-	ScorchGainSlider.setTextValueSuffix(" Gain");
-	addAndMakeVisible(ScorchGainSlider);
+	ScorchGainSlider.setTextValueSuffix(" Gain");	
 	ScorchGainSliderAttachment.reset(new SliderAttachment(mState, "gain", ScorchGainSlider));
 	ScorchGainSlider.addListener(this);
-	
+		
+	addAndMakeVisible(ScorchContourSlider);
 	ScorchContourSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchContourSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchContourSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
-	ScorchContourSlider.setTextValueSuffix(" Contour");
-	addAndMakeVisible(ScorchContourSlider);
+	ScorchContourSlider.setTextValueSuffix(" Contour");	
 	ScorchContourSliderAttachment.reset(new SliderAttachment(mState, "contour", ScorchContourSlider));
 	ScorchContourSlider.addListener(this);
 
+    addAndMakeVisible(ScorchPresenceSlider);
 	ScorchPresenceSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchPresenceSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchPresenceSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
-	ScorchPresenceSlider.setTextValueSuffix(" Presence");
-	addAndMakeVisible(ScorchPresenceSlider);
+	ScorchPresenceSlider.setTextValueSuffix(" Presence");	
 	ScorchPresenceSliderAttachment.reset(new SliderAttachment(mState, "presence", ScorchPresenceSlider));
 	ScorchPresenceSlider.addListener(this);
-	
+
+	addAndMakeVisible(ScorchTrebleSlider);	
 	ScorchTrebleSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchTrebleSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchTrebleSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
 	ScorchTrebleSlider.setTextValueSuffix(" Treble");
-	addAndMakeVisible(ScorchTrebleSlider);
 	ScorchTrebleSliderAttachment.reset(new SliderAttachment(mState, "treble", ScorchTrebleSlider));
 	ScorchTrebleSlider.addListener(this);
-	
+
+	addAndMakeVisible(ScorchMidSlider);	
 	ScorchMidSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchMidSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchMidSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
 	ScorchMidSlider.setTextValueSuffix(" Mid");
-	addAndMakeVisible(ScorchMidSlider);
 	ScorchMidSliderAttachment.reset(new SliderAttachment(mState, "mid", ScorchMidSlider));
 	ScorchMidSlider.addListener(this);
 
+	addAndMakeVisible(ScorchBassSlider);
 	ScorchBassSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchBassSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchBassSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
 	ScorchBassSlider.setTextValueSuffix(" Bass");
-	addAndMakeVisible(ScorchBassSlider);
 	ScorchBassSliderAttachment.reset(new SliderAttachment(mState, "bass", ScorchBassSlider));
 	ScorchBassSlider.addListener(this);
-	
+
+	addAndMakeVisible(ScorchNoiseGateSlider);	
 	ScorchNoiseGateSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchNoiseGateSlider.setSize(mSliderWidth, mSliderHeight);
 	ScorchNoiseGateSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
 	ScorchNoiseGateSlider.setTextValueSuffix(" NoiseGate");
-	addAndMakeVisible(ScorchNoiseGateSlider);
 	ScorchNoiseGateSliderAttachment.reset(new SliderAttachment(mState, "noisegate", ScorchNoiseGateSlider));
 	ScorchNoiseGateSlider.addListener(this);
 		
@@ -289,26 +289,26 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 //	boostButton.addListener (this);
 
 	addAndMakeVisible (noiseonButton);	
-    noiseonAttachment.reset (new ButtonAttachment (mState, "noiseon", noiseonButton));	
+        noiseonAttachment.reset (new ButtonAttachment (mState, "noiseon", noiseonButton));	
 	noiseonButton.onClick = [this] { updateToggleState3 (&noiseonButton, "NoiseOn"); };		
 //	noiseonButton.addListener (this);
 		
-    addAndMakeVisible(AmpStageMenu);        
-    AmpStageMenu.onChange = [this] { AmpStageMenuChanged(); };        
-    AmpStageMenu.addItem("AmpStages 1", 1);
-    AmpStageMenu.addItem("AmpStages 2", 2);
-    AmpStageMenu.addItem("AmpStages 3", 3);	
-    AmpStageMenu.addItem("AmpStages 4", 4);		
-    AmpStageMenu.addItem("AmpStages 5", 5);		
-    AmpStageMenu.addItem("AmpStages 6", 6);
-    AmpStageMenu.addItem("AmpStages 7", 7);       
-    AmpStageMenu.addItem("AmpStages 8", 8);
-    AmpStageMenu.addItem("AmpStages 9", 9);
-    AmpStageMenu.addItem("AmpStages 10", 10); 
-    AmpStageMenu.addItem("AmpStages 11", 11);               
+        addAndMakeVisible(AmpStageMenu);        
+        AmpStageMenu.onChange = [this] { AmpStageMenuChanged(); };        
+        AmpStageMenu.addItem("AmpStages 1", 1);
+        AmpStageMenu.addItem("AmpStages 2", 2);
+        AmpStageMenu.addItem("AmpStages 3", 3);	
+        AmpStageMenu.addItem("AmpStages 4", 4);		
+        AmpStageMenu.addItem("AmpStages 5", 5);		
+        AmpStageMenu.addItem("AmpStages 6", 6);
+        AmpStageMenu.addItem("AmpStages 7", 7);       
+        AmpStageMenu.addItem("AmpStages 8", 8);
+        AmpStageMenu.addItem("AmpStages 9", 9);
+        AmpStageMenu.addItem("AmpStages 10", 10); 
+        AmpStageMenu.addItem("AmpStages 11", 11);               
                       
-    AmpStageMenu.setSelectedId(1);  
-    AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));;                                 		
+        AmpStageMenu.setSelectedId(6);  
+        AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));;                                 		
 
 }
 

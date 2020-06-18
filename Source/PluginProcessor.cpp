@@ -396,5 +396,14 @@ AudioProcessorValueTreeState & ScorchAmpAudioProcessor::getState()
 
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new ScorchAmpAudioProcessor();
+	ScorchAmpAudioProcessor *sp;
+	sp = new ScorchAmpAudioProcessor();
+	
+	if(sp->mScorch == nullptr)
+        {
+	// printf("ScorchInitErr\n");
+        return nullptr;
+        }
+	
+ //   return new ScorchAmpAudioProcessor();
 }

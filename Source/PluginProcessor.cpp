@@ -103,40 +103,52 @@ mScorch()
     float setpar;	
 	
     setpar = mScorch->getParameterValue(2); 	
-    mState.getParameter("master")->setValue(setpar);	
+    mState.getParameter("master")->setValue(setpar);
+    sendParamChangeMessageToListeners(0, setpar);	
  
     setpar = mScorch->getParameterValue(4); 	
     mState.getParameter("gain")->setValue(setpar);
+    sendParamChangeMessageToListeners(1, setpar);
  
     setpar = mScorch->getParameterValue(11); 	
     mState.getParameter("contour")->setValue(setpar);
+    sendParamChangeMessageToListeners(2, setpar);
  
     setpar = mScorch->getParameterValue(10); 	
     mState.getParameter("presence")->setValue(setpar);
+    sendParamChangeMessageToListeners(3, setpar);
  
     setpar = mScorch->getParameterValue(9); 	
     mState.getParameter("treble")->setValue(setpar);
+    sendParamChangeMessageToListeners(4, setpar);
  
     setpar = mScorch->getParameterValue(8); 	
     mState.getParameter("mid")->setValue(setpar);
+    sendParamChangeMessageToListeners(5, setpar);
  
     setpar = mScorch->getParameterValue(7); 	
     mState.getParameter("bass")->setValue(setpar);
+    sendParamChangeMessageToListeners(6, setpar);
  
     setpar = mScorch->getParameterValue(13); 	
     mState.getParameter("noisegate")->setValue(setpar);
+    sendParamChangeMessageToListeners(7, setpar);
  
     setpar = mScorch->getParameterValue(12); 	
     mState.getParameter("noiseon")->setValue(setpar);
+    sendParamChangeMessageToListeners(9, setpar);
  
     setpar = mScorch->getParameterValue(5); 	
     mState.getParameter("bright")->setValue(setpar);
+    sendParamChangeMessageToListeners(11, setpar);
  
     setpar = mScorch->getParameterValue(3); 	
     mState.getParameter("boost")->setValue(setpar);
+    sendParamChangeMessageToListeners(10, setpar);
  
     setpar = mScorch->getParameterValue(6); 	
     mState.getParameter("ampstages")->setValue(setpar);
+    sendParamChangeMessageToListeners(8, setpar);
 }
 
 ScorchAmpAudioProcessor::~ScorchAmpAudioProcessor()

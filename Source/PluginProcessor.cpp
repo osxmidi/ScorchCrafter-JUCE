@@ -399,11 +399,16 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 	ScorchAmpAudioProcessor *sp;
 	sp = new ScorchAmpAudioProcessor();
 	
+	if(sp == nullptr)
+	return nullptr;	
+	
 	if(sp->mScorch == nullptr)
         {
 	// printf("ScorchInitErr\n");
         return nullptr;
         }
+	
+        return sp;	
 	
  //   return new ScorchAmpAudioProcessor();
 }

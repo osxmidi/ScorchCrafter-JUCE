@@ -37,16 +37,16 @@ public:
 
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-	AudioProcessorValueTreeState& getState();
+    AudioProcessorValueTreeState& getState();
 	
-	void parameterChanged(const String& parmID, float newValue) override;
+    void parameterChanged(const String& parmID, float newValue) override;
 		
-	String retval;
+    String retval;
+	
+    Scorch *mScorch;
 	 
 private:
-	AudioProcessorValueTreeState mState;
-		    
-	Scorch *mScorch;
-	
+    AudioProcessorValueTreeState mState;
+		    	
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScorchAmpAudioProcessor)
 };

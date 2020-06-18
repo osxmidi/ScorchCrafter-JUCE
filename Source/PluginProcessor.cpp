@@ -12,7 +12,7 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
                        ),
-	    mState(*this, nullptr, Identifier("VibraFlange"),
+	    mState(*this, nullptr, Identifier("ScorchCrafter"),
 		{
 			  std::make_unique<AudioParameterFloat>("master",
 													"Master",

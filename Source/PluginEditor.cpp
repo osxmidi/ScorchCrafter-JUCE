@@ -281,17 +281,17 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 	addAndMakeVisible (brightButton);
 	brightAttachment.reset (new ButtonAttachment (mState, "bright", brightButton));
 	brightButton.onClick = [this] { updateToggleState (&brightButton, "Bright"); };		
-//	brightButton.addListener (this);
+	brightButton.addListener (this);
 
 	addAndMakeVisible (boostButton);
 	boostAttachment.reset (new ButtonAttachment (mState, "boost", boostButton));	
 	boostButton.onClick = [this] { updateToggleState2 (&boostButton, "Boost"); };		
-//	boostButton.addListener (this);
+	boostButton.addListener (this);
 
 	addAndMakeVisible (noiseonButton);	
         noiseonAttachment.reset (new ButtonAttachment (mState, "noiseon", noiseonButton));	
 	noiseonButton.onClick = [this] { updateToggleState3 (&noiseonButton, "NoiseOn"); };		
-//	noiseonButton.addListener (this);
+	noiseonButton.addListener (this);
 		
         addAndMakeVisible(AmpStageMenu);        
         AmpStageMenu.onChange = [this] { AmpStageMenuChanged(); };        
@@ -308,7 +308,8 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
         AmpStageMenu.addItem("AmpStages 11", 11);               
                       
         AmpStageMenu.setSelectedId(6);  
-        AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));;                                 		
+        AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));  
+	AmpStageMenu.addListener (this);  
 
 }
 

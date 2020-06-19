@@ -84,7 +84,10 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 #endif
 { 
 	
-	mScorch = new Scorch();
+    mScorch = new Scorch();
+		    
+    if(mScorch == nullptr)
+    return;	    
 	
     mState.addParameterListener ("master", this);
     mState.addParameterListener ("gain", this);
@@ -154,6 +157,7 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 
 ScorchAmpAudioProcessor::~ScorchAmpAudioProcessor()
 {
+	if(mScorch)
 	delete mScorch;
 }
 

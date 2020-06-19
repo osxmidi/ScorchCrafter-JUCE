@@ -77,8 +77,9 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 			 std::make_unique<AudioParameterBool>("bright",
 													 "Bright",
 													 false)                                                     
-		}),
-mScorch()
+		})
+//		}),
+//mScorch()
 
 #endif
 { 

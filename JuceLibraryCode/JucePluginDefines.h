@@ -157,13 +157,13 @@
 #ifndef  JucePlugin_VSTNumMidiOutputs
  #define JucePlugin_VSTNumMidiOutputs      16
 #endif
-/*
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    2
 #endif
 #ifndef  JucePlugin_MaxNumOutputChannels
  #define JucePlugin_MaxNumOutputChannels   2
 #endif 
+/*
 #ifndef  JucePlugin_PreferredChannelConfigurations
  #define JucePlugin_PreferredChannelConfigurations  {2, 2}
 // {1, 1}, {2, 2}

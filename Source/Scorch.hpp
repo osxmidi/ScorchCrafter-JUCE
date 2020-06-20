@@ -4,11 +4,14 @@
 #define kVstMaxParamStrLen 8
 
 
-#define SCRFT_STATIC 1
+/*
+ #define SCRFT_STATIC 1
 
 #define SCORCHCRAFTER_USE_NONSTANDARD_OR_NO_GUI 1
 
 #define SCORCHCRAFTER_COMPILE_64 1
+*/
+
 
 #include "ScorchCrafter_Plugin.hpp"
 

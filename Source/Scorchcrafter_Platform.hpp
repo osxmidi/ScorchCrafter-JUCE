@@ -12,7 +12,9 @@
 #include <climits>
 #include <string>
 
+#ifndef _MSC_VER
 #define SCRFT_STATIC 1
+#endif
 
 #define SCORCHCRAFTER_USE_NONSTANDARD_OR_NO_GUI 1
 
@@ -100,9 +102,9 @@ namespace ScorchCrafter
 		#	undef SCRFT_EXPORT
 		#endif // SCRFT_EXPORT
 
-		#define SCRFT_RESTRICT __restrict__
-		#define SCRFT_RESTRICT_PTR *__restrict__
-		#define SCRFT_RESTRICT_REF &__restrict__
+		#define SCRFT_RESTRICT __restrict
+		#define SCRFT_RESTRICT_PTR *__restrict
+		#define SCRFT_RESTRICT_REF &__restrict
 
 	#ifdef SCRFT_STATIC
 		#define SCRFT_EXPORT __attribute__ ((visibility ("default")))
@@ -231,20 +233,20 @@ namespace ScorchCrafter
 		}
 
 	// f64 functions
-		inline f64 scft_Abs64(const f64 &inp) const
+		inline f64 scft_Abs64(const f64 &inp) 
 		{
 			return f64 ( (inp >= 0.0) ? inp : -inp );
 		}
 
-		inline f64 scft_Min64(const f64 SCRFT_RESTRICT_REF inp_a, const f64 SCRFT_RESTRICT_REF inp_b) const
+		inline f64 scft_Min64(const f64 SCRFT_RESTRICT_REF inp_a, const f64 SCRFT_RESTRICT_REF inp_b) 
 		{
 			return f64 ( (inp_a < inp_b) ? inp_a : inp_b );
 		}
-		inline f64 scft_Max64(const f64 SCRFT_RESTRICT_REF inp_a, const f64 SCRFT_RESTRICT_REF inp_b) const
+		inline f64 scft_Max64(const f64 SCRFT_RESTRICT_REF inp_a, const f64 SCRFT_RESTRICT_REF inp_b) 
 		{
 			return f64 ( (inp_a > inp_b) ? inp_a : inp_b );
 		}
-		inline f64 scft_Clamp64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF inp_min, const f64 SCRFT_RESTRICT_REF inp_max) const
+		inline f64 scft_Clamp64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF inp_min, const f64 SCRFT_RESTRICT_REF inp_max)
 		{
 			return f64 (	(inp > inp_max) ?
 								inp_max
@@ -255,20 +257,20 @@ namespace ScorchCrafter
 									inp ) );
 		}
 
-		inline f64 scft_Avg64(const f64 SCRFT_RESTRICT_REF inp_a, const f64 SCRFT_RESTRICT_REF inp_b, const f64 SCRFT_RESTRICT_REF skew_toward_b) const
+		inline f64 scft_Avg64(const f64 SCRFT_RESTRICT_REF inp_a, const f64 SCRFT_RESTRICT_REF inp_b, const f64 SCRFT_RESTRICT_REF skew_toward_b)
 		{
 			return f64 (	(inp_a * (1.0 - skew_toward_b)) +
 							(inp_b * skew_toward_b) );
 		}
 
-		inline f64 scft_ExpFx64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac) const
+		inline f64 scft_ExpFx64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac)
 		{
 			return f64 (	(inp >=  0.0) ?
 								( 1.0 - pow( fac, -inp ))
 							:
 								(-1.0 + pow( fac,  inp )) );
 		}
-		inline f64 scft_ExpFxA64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac) const
+		inline f64 scft_ExpFxA64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac)
 		{
 			return f64 (	(inp >=  0.0) ?
 								( 1.0 - pow( fac, -inp ))
@@ -276,7 +278,7 @@ namespace ScorchCrafter
 								( 1.0 - pow( fac,  inp )) );
 		}
 
-		inline f64 scft_PowFx64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac) const
+		inline f64 scft_PowFx64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac)
 		{
 					return f64 (	(inp <= -1.0) ?
 										-1.0
@@ -289,7 +291,7 @@ namespace ScorchCrafter
 									:
 										(-1.0 + pow( 1.0 + inp, fac ))	);
 		}
-		inline f64 scft_PowFxA64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac) const
+		inline f64 scft_PowFxA64(const f64 SCRFT_RESTRICT_REF inp, const f64 SCRFT_RESTRICT_REF fac)
 		{
 					return f64 (	(inp <= -1.0) ?
 										1.0
@@ -304,20 +306,20 @@ namespace ScorchCrafter
 		}
 
 	// f80 functions
-		inline f80 scft_Abs80(const f80 &inp) const
+		inline f80 scft_Abs80(const f80 &inp) 
 		{
 			return f80 ( (inp >= 0.0L) ? inp : -inp );
 		}
 
-		inline f80 scft_Min80(const f80 SCRFT_RESTRICT_REF inp_a, const f80 SCRFT_RESTRICT_REF inp_b) const
+		inline f80 scft_Min80(const f80 SCRFT_RESTRICT_REF inp_a, const f80 SCRFT_RESTRICT_REF inp_b) 
 		{
 			return f80 ( (inp_a < inp_b) ? inp_a : inp_b );
 		}
-		inline f80 scft_Max80(const f80 SCRFT_RESTRICT_REF inp_a, const f80 SCRFT_RESTRICT_REF inp_b) const
+		inline f80 scft_Max80(const f80 SCRFT_RESTRICT_REF inp_a, const f80 SCRFT_RESTRICT_REF inp_b) 
 		{
 			return f80 ( (inp_a > inp_b) ? inp_a : inp_b );
 		}
-		inline f80 scft_Clamp80(const f80 SCRFT_RESTRICT_REF inp, const f80 SCRFT_RESTRICT_REF inp_min, const f80 SCRFT_RESTRICT_REF inp_max) const
+		inline f80 scft_Clamp80(const f80 SCRFT_RESTRICT_REF inp, const f80 SCRFT_RESTRICT_REF inp_min, const f80 SCRFT_RESTRICT_REF inp_max) 
 		{
 			return f80 (	(inp > inp_max) ?
 								inp_max
@@ -328,7 +330,7 @@ namespace ScorchCrafter
 									inp ) );
 		}
 
-		inline f80 scft_Avg80(const f80 SCRFT_RESTRICT_REF inp_a, const f80 SCRFT_RESTRICT_REF inp_b, const f80 SCRFT_RESTRICT_REF skew_toward_b) const
+		inline f80 scft_Avg80(const f80 SCRFT_RESTRICT_REF inp_a, const f80 SCRFT_RESTRICT_REF inp_b, const f80 SCRFT_RESTRICT_REF skew_toward_b) 
 		{
 			return f80 (	(inp_a * (1.0L - skew_toward_b)) +
 							(inp_b * skew_toward_b) );

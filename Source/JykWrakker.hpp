@@ -289,7 +289,7 @@ namespace ScorchCrafter
 				Control_Preset_Data& operator= (const Control_Preset_Data &other)
 				{
 					ControlLabels.Init();
-					PresetLabels.Init();
+					PresetLabels.Init();					
 
 					for(u32 x = 0u; x < (u32) kPreset_MAX_COUNT; x++)
 					{
@@ -300,6 +300,7 @@ namespace ScorchCrafter
 							Bank[x].prm[y] = other.Bank[x].prm[y];
 						}
 					}
+					return *this;
 				}
 			};
 

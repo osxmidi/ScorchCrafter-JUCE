@@ -110,8 +110,8 @@ namespace ScorchCrafter
 		#define SCRFT_EXPORT __attribute__ ((visibility ("default")))
 		#define SCRFT_IMPORT __attribute__ ((visibility ("default")))
 	#else
-		#define SCRFT_EXPORT __attribute__ ((dllexport))
-		#define SCRFT_IMPORT __attribute__ ((dllimport))
+		#define SCRFT_EXPORT __declspec (dllexport)
+		#define SCRFT_IMPORT __declspec (dllexport)
 	#endif // SCRFT_STATIC
 
 	#if(__cplusplus >= 201103L) // C++11 support

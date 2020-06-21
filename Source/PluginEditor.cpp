@@ -175,6 +175,10 @@ void ScorchAmpAudioProcessorEditor::AmpStageMenuChanged()
         AmpStageMenu.setSelectedId(11); 
         break;                                                                                            
     }
+	
+	mState.getParameter("ampstages")->beginChangeGesture();
+        mState.getParameter("ampstages")->setValueNotifyingHost (mState.getParameter("ampstages")->getValue());
+        mState.getParameter("ampstages")->endChangeGesture();
 
 }    
 
@@ -307,7 +311,7 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
         AmpStageMenu.addItem("AmpStages 10", 10); 
         AmpStageMenu.addItem("AmpStages 11", 11);               
                       
-        AmpStageMenu.setSelectedId(6);  
+       //  AmpStageMenu.setSelectedId(6);  
         AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));  
 	AmpStageMenu.addListener (this);  
 

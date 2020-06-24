@@ -12,7 +12,7 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
                        ),
-	    mState(*this, nullptr, Identifier("ScorchCrafter"),
+	    mState(*this, nullptr, Identifier("ScorchC120"),
 		{
 			  std::make_unique<AudioParameterFloat>("master",
 													"Master",
@@ -56,6 +56,7 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 													 1.0,
 													 0.5
 												     ),
+												     /*
 			 std::make_unique<AudioParameterFloat>("noisegate",
 													 "NoiseGate",
 										             0.0, 
@@ -68,15 +69,19 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 													 10.0,
 													 0.5
                                                      ), 
-			 std::make_unique<AudioParameterBool>("noiseon",
-													 "NoiseOn",
+                                                     */
+			 std::make_unique<AudioParameterBool>("heavy",
+													 "Heavy",
 													 false),                                                           
 			 std::make_unique<AudioParameterBool>("boost",
 													 "Boost",
 													 false),                                                                                                           
 			 std::make_unique<AudioParameterBool>("bright",
 													 "Bright",
-													 false)                                                     
+													 false),
+			 std::make_unique<AudioParameterBool>("clean",
+													 "Clean",
+													 false)													                                                     
 		})
 //		}),
 //mScorch()
@@ -84,10 +89,13 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 #endif
 { 
 	
-    mScorch = new Scorch();
+    mScorch = new ScC120();
 		    
     if(mScorch == nullptr)
+    {
+		printf("nullptr\n");
     return;	    
+    }
 	
     mState.addParameterListener ("master", this);
     mState.addParameterListener ("gain", this);
@@ -96,63 +104,66 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
     mState.addParameterListener ("treble", this);
     mState.addParameterListener ("mid", this);
     mState.addParameterListener ("bass", this);
-    mState.addParameterListener ("noisegate", this);
+   // mState.addParameterListener ("noisegate", this);
     mState.addParameterListener ("bright", this);
-    mState.addParameterListener ("noiseon", this);
+    mState.addParameterListener ("heavy", this);
     mState.addParameterListener ("boost", this); 
-    mState.addParameterListener ("ampstages", this);
+    mState.addParameterListener ("clean", this);
  
-    mScorch->loadProgram(0); 
+  //  mScorch->loadProgram(0); 
  
     float setpar;	
 	
-    setpar = mScorch->getParameterValue(2); 	
+    setpar = mScorch->getParameterValue(1); 	
     mState.getParameter("master")->setValue(setpar);
     sendParamChangeMessageToListeners(0, setpar);	
  
-    setpar = mScorch->getParameterValue(4); 	
+    setpar = mScorch->getParameterValue(0); 	
     mState.getParameter("gain")->setValue(setpar);
     sendParamChangeMessageToListeners(1, setpar);
  
-    setpar = mScorch->getParameterValue(11); 	
+    setpar = mScorch->getParameterValue(5); 	
     mState.getParameter("contour")->setValue(setpar);
     sendParamChangeMessageToListeners(2, setpar);
  
-    setpar = mScorch->getParameterValue(10); 	
+    setpar = mScorch->getParameterValue(6); 	
     mState.getParameter("presence")->setValue(setpar);
     sendParamChangeMessageToListeners(3, setpar);
  
-    setpar = mScorch->getParameterValue(9); 	
+    setpar = mScorch->getParameterValue(4); 	
     mState.getParameter("treble")->setValue(setpar);
     sendParamChangeMessageToListeners(4, setpar);
  
-    setpar = mScorch->getParameterValue(8); 	
+    setpar = mScorch->getParameterValue(3); 	
     mState.getParameter("mid")->setValue(setpar);
     sendParamChangeMessageToListeners(5, setpar);
  
-    setpar = mScorch->getParameterValue(7); 	
+    setpar = mScorch->getParameterValue(2); 	
     mState.getParameter("bass")->setValue(setpar);
     sendParamChangeMessageToListeners(6, setpar);
  
+ /*
     setpar = mScorch->getParameterValue(13); 	
     mState.getParameter("noisegate")->setValue(setpar);
     sendParamChangeMessageToListeners(7, setpar);
+ */
+ 
+    setpar = mScorch->getParameterValue(10); 	
+    mState.getParameter("heavy")->setValue(setpar);
+    sendParamChangeMessageToListeners(7, setpar);
+ 
+    setpar = mScorch->getParameterValue(9); 	
+    mState.getParameter("bright")->setValue(setpar);
+    sendParamChangeMessageToListeners(8, setpar);
  
     setpar = mScorch->getParameterValue(12); 	
-    mState.getParameter("noiseon")->setValue(setpar);
+    mState.getParameter("boost")->setValue(setpar);
     sendParamChangeMessageToListeners(9, setpar);
  
-    setpar = mScorch->getParameterValue(5); 	
-    mState.getParameter("bright")->setValue(setpar);
-    sendParamChangeMessageToListeners(11, setpar);
- 
-    setpar = mScorch->getParameterValue(3); 	
-    mState.getParameter("boost")->setValue(setpar);
+    setpar = mScorch->getParameterValue(11); 	
+    mState.getParameter("clean")->setValue(setpar);
     sendParamChangeMessageToListeners(10, setpar);
- 
-    setpar = mScorch->getParameterValue(6); 	
-    mState.getParameter("ampstages")->setValue(setpar);
-    sendParamChangeMessageToListeners(8, setpar);
+    
 }
 
 ScorchAmpAudioProcessor::~ScorchAmpAudioProcessor()
@@ -199,17 +210,19 @@ double ScorchAmpAudioProcessor::getTailLengthSeconds() const
 }
 
 int ScorchAmpAudioProcessor::getNumPrograms()
-{	
-    return mScorch->numprograms; 
+{
+	return 1;	
+  //  return mScorch->numprograms; 
 }
 
 int ScorchAmpAudioProcessor::getCurrentProgram()
 {	
-    return mScorch->getProgramx(); 
+ //   return mScorch->getProgramx(); 
 }
 
 void ScorchAmpAudioProcessor::setCurrentProgram (int index)
 {
+	/*
     if(index < 0)
     return;
     	
@@ -264,10 +277,12 @@ void ScorchAmpAudioProcessor::setCurrentProgram (int index)
     setpar = mScorch->getParameterValue(6); 	
     mState.getParameter("ampstages")->setValue(setpar);
     sendParamChangeMessageToListeners(8, setpar);	
+    */
 }
 
 const String ScorchAmpAudioProcessor::getProgramName (int index)
 {
+	/*
 	char name[2048];
 	
 	memset(name, 0, 2048);
@@ -277,6 +292,9 @@ const String ScorchAmpAudioProcessor::getProgramName (int index)
     retval = name;
 	
     return retval;
+    */
+    
+    return {};
 }
 
 void ScorchAmpAudioProcessor::changeProgramName (int index, const String& newName)
@@ -289,54 +307,61 @@ void ScorchAmpAudioProcessor::parameterChanged(const String& parmID, float newVa
 		
     if (parmID == "master")
     {
-        mScorch->setParameterValue(2, newValue);
+        mScorch->setParameterValue(1, newValue);
     }
     else if (parmID == "gain")
     {
-        mScorch->setParameterValue(4, newValue);
+        mScorch->setParameterValue(0, newValue);
     }
     else if (parmID == "contour")
     {
-        mScorch->setParameterValue(11, newValue);
+        mScorch->setParameterValue(5, newValue);
     }
     else if (parmID == "presence")
     {
-        mScorch->setParameterValue(10, newValue);
+        mScorch->setParameterValue(6, newValue);
     }
     else if (parmID == "treble")
     {
-        mScorch->setParameterValue(9, newValue);
+        mScorch->setParameterValue(4, newValue);
     }    
     else if (parmID == "mid")
     {
-        mScorch->setParameterValue(8, newValue);
+        mScorch->setParameterValue(3, newValue);
     } 
     else if (parmID == "bass")
     {
-        mScorch->setParameterValue(7, newValue);
+        mScorch->setParameterValue(2, newValue);
     }
+    /*
     else if (parmID == "noisegate")
     {
         mScorch->setParameterValue(13, newValue);
-    }     
-    else if (parmID == "noiseon")
+    }   
+    */  
+    else if (parmID == "heavy")
     {
-        mScorch->setParameterValue(12, newValue);
+        mScorch->setParameterValue(10, newValue);
     }               
     else if (parmID == "bright")
     {
-        mScorch->setParameterValue(5, newValue);
+        mScorch->setParameterValue(9, newValue);
     }           
     else if (parmID == "boost")
     {
-        mScorch->setParameterValue(3, newValue);
-    }           
+        mScorch->setParameterValue(12, newValue);
+    } 
+    else if (parmID == "clean")
+    {
+        mScorch->setParameterValue(11, newValue);
+    }     
+    /*          
     else if (parmID == "ampstages")
     {
 		newValue2 = newValue / 10.0;
         mScorch->setParameterValue(6, newValue2);
     }  
-                                   
+  */                                 
 }
 
 void ScorchAmpAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
@@ -372,12 +397,14 @@ bool ScorchAmpAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts
 
 void ScorchAmpAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
+	
     ScopedNoDenormals noDenormals;
         
     const float *inBuffers[2] = { buffer.getReadPointer(0), buffer.getReadPointer(1) };
     float* outBuffers[2] = { buffer.getWritePointer(0), buffer.getWritePointer(1) };
 
      mScorch->run(inBuffers, outBuffers, buffer.getNumSamples());
+     
 }
 
 bool ScorchAmpAudioProcessor::hasEditor() const

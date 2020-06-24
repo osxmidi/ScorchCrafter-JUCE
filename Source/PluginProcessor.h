@@ -43,7 +43,7 @@ public:
 		
     String retval;
 	
-    Scorch *mScorch;
+    ScC120 *mScorch;
 	 
 private:
     AudioProcessorValueTreeState mState;

@@ -24,6 +24,7 @@ private:
 	void updateToggleState (Button* button, String name);
 	void updateToggleState2 (Button* button, String name);
 	void updateToggleState3 (Button* button, String name);
+	void updateToggleState4 (Button* button, String name);	
 	
 	ToggleButton brightButton { "Bright" };	
 	std::unique_ptr<ButtonAttachment> brightAttachment;
@@ -31,8 +32,11 @@ private:
 	ToggleButton boostButton { "Boost" };	
     std::unique_ptr<ButtonAttachment> boostAttachment;
 	  
-	ToggleButton noiseonButton { "NoiseOn" };
-	std::unique_ptr<ButtonAttachment> noiseonAttachment;	  	  
+	ToggleButton heavyButton { "Heavy" };
+	std::unique_ptr<ButtonAttachment> heavyAttachment;	
+	
+	ToggleButton cleanButton { "Clean" };
+	std::unique_ptr<ButtonAttachment> cleanAttachment;	  		  	  
 	
 	void buttonClicked (Button* button) override;
 	   

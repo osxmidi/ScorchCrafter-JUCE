@@ -61,12 +61,14 @@ void ScorchAmpAudioProcessorEditor::sliderValueChanged (Slider* slider)
           mState.getParameter("bass")->setValueNotifyingHost ((float) slider->getValue());
           mState.getParameter("bass")->endChangeGesture();
 	}	
+	/*
 	else if(slider == &ScorchNoiseGateSlider)
 	{
 	      mState.getParameter("noisegate")->beginChangeGesture();
           mState.getParameter("noisegate")->setValueNotifyingHost ((float) slider->getValue());
           mState.getParameter("noisegate")->endChangeGesture();
 	}	
+	*/
 
 }
 
@@ -112,19 +114,72 @@ void ScorchAmpAudioProcessorEditor::updateToggleState2 (Button* button, String n
     
 void ScorchAmpAudioProcessorEditor::updateToggleState3 (Button* button, String name)
     {
-
-	if (button == &noiseonButton) 
+	if (button == &heavyButton) 
+	{	
+		/*
+	if((mState.getParameter("heavy")->getValue() == 1.0) && (mState.getParameter("clean")->getValue() == 0.0))
 	{
+    heavyButton.setToggleState (true, dontSendNotification);
+	return;
+    }
+    */
+			
+	auto state = button->getToggleState();
+			
+	mState.getParameter("heavy")->setValue(state);	
+	mState.getParameter("heavy")->beginChangeGesture();
+    mState.getParameter("heavy")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
+    mState.getParameter("heavy")->endChangeGesture();	  
+ 
+    if(mState.getParameter("clean")->getValue()	== 1.0)
+    {  
+	cleanButton.setToggleState (false, dontSendNotification); 
+	
+    mState.getParameter("clean")->setValue(0.0);	
+    mState.getParameter("clean")->beginChangeGesture();
+    mState.getParameter("clean")->setValueNotifyingHost (0.0f);
+    mState.getParameter("clean")->endChangeGesture();	           			
+	 }
+	
+    }		
+
+} 
+
+void ScorchAmpAudioProcessorEditor::updateToggleState4 (Button* button, String name)
+{
+
+    if (button == &cleanButton) 
+	{	
+		/*	
+	if((mState.getParameter("clean")->getValue() == 1.0) && (mState.getParameter("heavy")->getValue() == 0.0))
+	{
+	cleanButton.setToggleState (true, dontSendNotification);	
+	return;	
+    }	
+	*/
+		
 	auto state = button->getToggleState();
 		
-	mState.getParameter("noiseon")->setValue(state);	
-	mState.getParameter("noiseon")->beginChangeGesture();
-    mState.getParameter("noiseon")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("noiseon")->endChangeGesture();	  			
+	mState.getParameter("clean")->setValue(state);	
+	mState.getParameter("clean")->beginChangeGesture();
+    mState.getParameter("clean")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
+    mState.getParameter("clean")->endChangeGesture();	  
+    
+    if(mState.getParameter("heavy")->getValue()	== 1.0)
+    {    	
+    heavyButton.setToggleState (false, dontSendNotification);
+
+    mState.getParameter("heavy")->setValue(0.0);	
+    mState.getParameter("heavy")->beginChangeGesture();
+    mState.getParameter("heavy")->setValueNotifyingHost (0.0f);
+    mState.getParameter("heavy")->endChangeGesture();	
+    }      
+      
 	}		
 
-}     
-    
+}       
+   
+   /* 
 void ScorchAmpAudioProcessorEditor::AmpStageMenuChanged()
 {
 
@@ -180,7 +235,8 @@ void ScorchAmpAudioProcessorEditor::AmpStageMenuChanged()
         mState.getParameter("ampstages")->setValueNotifyingHost (mState.getParameter("ampstages")->getValue());
         mState.getParameter("ampstages")->endChangeGesture();
 
-}    
+}  
+*/  
 
 void ScorchAmpAudioProcessorEditor::paint (Graphics& g)
 {
@@ -190,7 +246,7 @@ Rectangle<int> rect = {125, 0, 300, 80};
     g.fillAll (Colours::darkblue.brighter());
     g.setColour (Colours::black);     
     g.setFont (40.0f);    
-    g.drawText ("ScorchCrafter", rect, Justification::left, true);   
+    g.drawText ("Scorch   C120", rect, Justification::left, true);   
 
 }
 
@@ -203,16 +259,17 @@ void ScorchAmpAudioProcessorEditor::resized()
     ScorchGainSlider.setBounds (sliderLeft + 100, 80, 100, 100);
     ScorchContourSlider.setBounds (sliderLeft + 200, 80, 100, 100);   
     ScorchPresenceSlider.setBounds (sliderLeft + 300, 80, 100 , 100);
-    ScorchTrebleSlider.setBounds (sliderLeft, 180, 100 , 100);
-    ScorchMidSlider.setBounds (sliderLeft + 100, 180 , 100 , 100);
-    ScorchBassSlider.setBounds (sliderLeft + 200, 180 , 100 , 100);   
-    ScorchNoiseGateSlider.setBounds (sliderLeft + 300, 180 , 100 , 100);              
+    ScorchTrebleSlider.setBounds (sliderLeft + 50, 180, 100 , 100);
+    ScorchMidSlider.setBounds (sliderLeft + 150, 180 , 100 , 100);
+    ScorchBassSlider.setBounds (sliderLeft + 250, 180 , 100 , 100);   
+ //   ScorchNoiseGateSlider.setBounds (sliderLeft + 300, 180 , 100 , 100);              
                 
-    brightButton.setBounds(sliderLeft + 150, 300, 70, 20);
-    boostButton.setBounds(sliderLeft + 230, 300, 70, 20);
-    noiseonButton.setBounds(sliderLeft + 310, 300, 70, 20);
+    brightButton.setBounds(sliderLeft + 40, 300, 70, 20);
+    boostButton.setBounds(sliderLeft + 120, 300, 70, 20);
+    heavyButton.setBounds(sliderLeft + 200, 300, 70, 20);
+    cleanButton.setBounds(sliderLeft + 280, 300, 70, 20);
     
-    AmpStageMenu.setBounds(sliderLeft, 300, 130, 20);      
+  //  AmpStageMenu.setBounds(sliderLeft, 300, 130, 20);      
      
 }
 
@@ -274,6 +331,7 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 	ScorchBassSliderAttachment.reset(new SliderAttachment(mState, "bass", ScorchBassSlider));
 	ScorchBassSlider.addListener(this);
 
+/*
 	addAndMakeVisible(ScorchNoiseGateSlider);	
 	ScorchNoiseGateSlider.setSliderStyle(Slider::SliderStyle::Rotary);
 	ScorchNoiseGateSlider.setSize(mSliderWidth, mSliderHeight);
@@ -281,7 +339,7 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 	ScorchNoiseGateSlider.setTextValueSuffix(" NoiseGate");
 	ScorchNoiseGateSliderAttachment.reset(new SliderAttachment(mState, "noisegate", ScorchNoiseGateSlider));
 	ScorchNoiseGateSlider.addListener(this);
-		
+*/		
 	addAndMakeVisible (brightButton);
 	brightAttachment.reset (new ButtonAttachment (mState, "bright", brightButton));
 	brightButton.onClick = [this] { updateToggleState (&brightButton, "Bright"); };		
@@ -292,10 +350,17 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 	boostButton.onClick = [this] { updateToggleState2 (&boostButton, "Boost"); };		
 	boostButton.addListener (this);
 
-	addAndMakeVisible (noiseonButton);	
-        noiseonAttachment.reset (new ButtonAttachment (mState, "noiseon", noiseonButton));	
-	noiseonButton.onClick = [this] { updateToggleState3 (&noiseonButton, "NoiseOn"); };		
-	noiseonButton.addListener (this);
+	addAndMakeVisible (heavyButton);	
+    heavyAttachment.reset (new ButtonAttachment (mState, "heavy", heavyButton));	
+	heavyButton.onClick = [this] { updateToggleState3 (&heavyButton, "Heavy"); };		
+	heavyButton.addListener (this);
+	
+	addAndMakeVisible (cleanButton);	
+    cleanAttachment.reset (new ButtonAttachment (mState, "clean", cleanButton));	
+	cleanButton.onClick = [this] { updateToggleState4 (&cleanButton, "Clean"); };		
+	cleanButton.addListener (this);	
+	
+	/*
 		
         addAndMakeVisible(AmpStageMenu);        
         AmpStageMenu.onChange = [this] { AmpStageMenuChanged(); };        
@@ -314,7 +379,7 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
        //  AmpStageMenu.setSelectedId(6);  
         AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));  
 	AmpStageMenu.addListener (this);  
-
+*/
 }
 
    

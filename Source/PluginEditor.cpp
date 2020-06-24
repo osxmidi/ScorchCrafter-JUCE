@@ -61,14 +61,6 @@ void ScorchAmpAudioProcessorEditor::sliderValueChanged (Slider* slider)
           mState.getParameter("bass")->setValueNotifyingHost ((float) slider->getValue());
           mState.getParameter("bass")->endChangeGesture();
 	}	
-	/*
-	else if(slider == &ScorchNoiseGateSlider)
-	{
-	      mState.getParameter("noisegate")->beginChangeGesture();
-          mState.getParameter("noisegate")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("noisegate")->endChangeGesture();
-	}	
-	*/
 
 }
 
@@ -114,16 +106,9 @@ void ScorchAmpAudioProcessorEditor::updateToggleState2 (Button* button, String n
     
 void ScorchAmpAudioProcessorEditor::updateToggleState3 (Button* button, String name)
     {
+	
 	if (button == &heavyButton) 
-	{	
-		/*
-	if((mState.getParameter("heavy")->getValue() == 1.0) && (mState.getParameter("clean")->getValue() == 0.0))
-	{
-    heavyButton.setToggleState (true, dontSendNotification);
-	return;
-    }
-    */
-			
+	{				
 	auto state = button->getToggleState();
 			
 	mState.getParameter("heavy")->setValue(state);	
@@ -149,15 +134,7 @@ void ScorchAmpAudioProcessorEditor::updateToggleState4 (Button* button, String n
 {
 
     if (button == &cleanButton) 
-	{	
-		/*	
-	if((mState.getParameter("clean")->getValue() == 1.0) && (mState.getParameter("heavy")->getValue() == 0.0))
-	{
-	cleanButton.setToggleState (true, dontSendNotification);	
-	return;	
-    }	
-	*/
-		
+	{			
 	auto state = button->getToggleState();
 		
 	mState.getParameter("clean")->setValue(state);	
@@ -179,65 +156,6 @@ void ScorchAmpAudioProcessorEditor::updateToggleState4 (Button* button, String n
 
 }       
    
-   /* 
-void ScorchAmpAudioProcessorEditor::AmpStageMenuChanged()
-{
-
-    switch (AmpStageMenu.getSelectedId())
-    {
-        case 1: 
-        mState.getParameter("ampstages")->setValue(0.0); 
-        AmpStageMenu.setSelectedId(1); 
-        break;
-        case 2: 
-        mState.getParameter("ampstages")->setValue(0.1); 
-        AmpStageMenu.setSelectedId(2); 
-        break;
-        case 3: 
-        mState.getParameter("ampstages")->setValue(0.2); 
-        AmpStageMenu.setSelectedId(3); 
-        break;
-        case 4: 
-        mState.getParameter("ampstages")->setValue(0.3); 
-        AmpStageMenu.setSelectedId(4); 
-        break; 
-        case 5: 
-        mState.getParameter("ampstages")->setValue(0.4); 
-        AmpStageMenu.setSelectedId(5); 
-        break; 
-        case 6: 
-        mState.getParameter("ampstages")->setValue(0.5); 
-        AmpStageMenu.setSelectedId(6); 
-        break; 
-        case 7: 
-        mState.getParameter("ampstages")->setValue(0.6); 
-        AmpStageMenu.setSelectedId(7); 
-        break; 
-        case 8:  
-        mState.getParameter("ampstages")->setValue(0.7); 
-        AmpStageMenu.setSelectedId(8); 
-        break;     
-        case 9:  
-        mState.getParameter("ampstages")->setValue(0.8); 
-        AmpStageMenu.setSelectedId(9); 
-        break;          
-        case 10: 
-        mState.getParameter("ampstages")->setValue(0.9); 
-        AmpStageMenu.setSelectedId(10); 
-        break; 
-        case 11: 
-        mState.getParameter("ampstages")->setValue(1.0); 
-        AmpStageMenu.setSelectedId(11); 
-        break;                                                                                            
-    }
-	
-	mState.getParameter("ampstages")->beginChangeGesture();
-        mState.getParameter("ampstages")->setValueNotifyingHost (mState.getParameter("ampstages")->getValue());
-        mState.getParameter("ampstages")->endChangeGesture();
-
-}  
-*/  
-
 void ScorchAmpAudioProcessorEditor::paint (Graphics& g)
 {
 
@@ -261,16 +179,13 @@ void ScorchAmpAudioProcessorEditor::resized()
     ScorchPresenceSlider.setBounds (sliderLeft + 300, 80, 100 , 100);
     ScorchTrebleSlider.setBounds (sliderLeft + 50, 180, 100 , 100);
     ScorchMidSlider.setBounds (sliderLeft + 150, 180 , 100 , 100);
-    ScorchBassSlider.setBounds (sliderLeft + 250, 180 , 100 , 100);   
- //   ScorchNoiseGateSlider.setBounds (sliderLeft + 300, 180 , 100 , 100);              
+    ScorchBassSlider.setBounds (sliderLeft + 250, 180 , 100 , 100);             
                 
     brightButton.setBounds(sliderLeft + 40, 300, 70, 20);
     boostButton.setBounds(sliderLeft + 120, 300, 70, 20);
     heavyButton.setBounds(sliderLeft + 200, 300, 70, 20);
     cleanButton.setBounds(sliderLeft + 280, 300, 70, 20);
-    
-  //  AmpStageMenu.setBounds(sliderLeft, 300, 130, 20);      
-     
+       
 }
 
 void ScorchAmpAudioProcessorEditor::initialiseGUI()
@@ -331,15 +246,6 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 	ScorchBassSliderAttachment.reset(new SliderAttachment(mState, "bass", ScorchBassSlider));
 	ScorchBassSlider.addListener(this);
 
-/*
-	addAndMakeVisible(ScorchNoiseGateSlider);	
-	ScorchNoiseGateSlider.setSliderStyle(Slider::SliderStyle::Rotary);
-	ScorchNoiseGateSlider.setSize(mSliderWidth, mSliderHeight);
-	ScorchNoiseGateSlider.setTextBoxStyle(Slider::TextBoxBelow, false, mTextBoxWidth, mTextBoxHeight);
-	ScorchNoiseGateSlider.setTextValueSuffix(" NoiseGate");
-	ScorchNoiseGateSliderAttachment.reset(new SliderAttachment(mState, "noisegate", ScorchNoiseGateSlider));
-	ScorchNoiseGateSlider.addListener(this);
-*/		
 	addAndMakeVisible (brightButton);
 	brightAttachment.reset (new ButtonAttachment (mState, "bright", brightButton));
 	brightButton.onClick = [this] { updateToggleState (&brightButton, "Bright"); };		
@@ -360,26 +266,6 @@ void ScorchAmpAudioProcessorEditor::initialiseGUI()
 	cleanButton.onClick = [this] { updateToggleState4 (&cleanButton, "Clean"); };		
 	cleanButton.addListener (this);	
 	
-	/*
-		
-        addAndMakeVisible(AmpStageMenu);        
-        AmpStageMenu.onChange = [this] { AmpStageMenuChanged(); };        
-        AmpStageMenu.addItem("AmpStages 1", 1);
-        AmpStageMenu.addItem("AmpStages 2", 2);
-        AmpStageMenu.addItem("AmpStages 3", 3);	
-        AmpStageMenu.addItem("AmpStages 4", 4);		
-        AmpStageMenu.addItem("AmpStages 5", 5);		
-        AmpStageMenu.addItem("AmpStages 6", 6);
-        AmpStageMenu.addItem("AmpStages 7", 7);       
-        AmpStageMenu.addItem("AmpStages 8", 8);
-        AmpStageMenu.addItem("AmpStages 9", 9);
-        AmpStageMenu.addItem("AmpStages 10", 10); 
-        AmpStageMenu.addItem("AmpStages 11", 11);               
-                      
-       //  AmpStageMenu.setSelectedId(6);  
-        AmpStageMenuAttachment.reset (new ComboBoxAttachment (mState, "ampstages", AmpStageMenu));  
-	AmpStageMenu.addListener (this);  
-*/
 }
 
    

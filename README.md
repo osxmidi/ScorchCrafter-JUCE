@@ -11,7 +11,7 @@ Some possible IR loaders https://github.com/osxmidi/KlangFalter and http://lsp-p
 
 ----------
 
-To make
+To make Linux version
 
 Some libraries need to be installed
 

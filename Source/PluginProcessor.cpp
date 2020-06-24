@@ -56,20 +56,6 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 													 1.0,
 													 0.5
 												     ),
-												     /*
-			 std::make_unique<AudioParameterFloat>("noisegate",
-													 "NoiseGate",
-										             0.0, 
-													 1.0,
-													 0.6
-                                                     ),                                                    
-			 std::make_unique<AudioParameterFloat>("ampstages",
-													 "AmpStages",													 
-										             0.0, 
-													 10.0,
-													 0.5
-                                                     ), 
-                                                     */
 			 std::make_unique<AudioParameterBool>("heavy",
 													 "Heavy",
 													 false),                                                           
@@ -104,13 +90,10 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
     mState.addParameterListener ("treble", this);
     mState.addParameterListener ("mid", this);
     mState.addParameterListener ("bass", this);
-   // mState.addParameterListener ("noisegate", this);
     mState.addParameterListener ("bright", this);
     mState.addParameterListener ("heavy", this);
     mState.addParameterListener ("boost", this); 
     mState.addParameterListener ("clean", this);
- 
-  //  mScorch->loadProgram(0); 
  
     float setpar;	
 	
@@ -141,13 +124,7 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
     setpar = mScorch->getParameterValue(2); 	
     mState.getParameter("bass")->setValue(setpar);
     sendParamChangeMessageToListeners(6, setpar);
- 
- /*
-    setpar = mScorch->getParameterValue(13); 	
-    mState.getParameter("noisegate")->setValue(setpar);
-    sendParamChangeMessageToListeners(7, setpar);
- */
- 
+  
     setpar = mScorch->getParameterValue(10); 	
     mState.getParameter("heavy")->setValue(setpar);
     sendParamChangeMessageToListeners(7, setpar);
@@ -211,89 +188,20 @@ double ScorchAmpAudioProcessor::getTailLengthSeconds() const
 
 int ScorchAmpAudioProcessor::getNumPrograms()
 {
-	return 1;	
-  //  return mScorch->numprograms; 
+    return 1;	
 }
 
 int ScorchAmpAudioProcessor::getCurrentProgram()
 {	
- //   return mScorch->getProgramx(); 
+    return 0;
 }
 
 void ScorchAmpAudioProcessor::setCurrentProgram (int index)
 {
-	/*
-    if(index < 0)
-    return;
-    	
-	mScorch->loadProgram(index); 
-	
-    float setpar;	
-	
-    setpar = mScorch->getParameterValue(2); 	
-    mState.getParameter("master")->setValue(setpar);	 
-    sendParamChangeMessageToListeners(0, setpar);
- 
-    setpar = mScorch->getParameterValue(4); 	
-    mState.getParameter("gain")->setValue(setpar);
-    sendParamChangeMessageToListeners(1, setpar);  
-  
-    setpar = mScorch->getParameterValue(11); 	
-    mState.getParameter("contour")->setValue(setpar);
-    sendParamChangeMessageToListeners(2, setpar);
- 
-    setpar = mScorch->getParameterValue(10); 	
-    mState.getParameter("presence")->setValue(setpar);
-    sendParamChangeMessageToListeners(3, setpar);
- 
-    setpar = mScorch->getParameterValue(9); 	
-    mState.getParameter("treble")->setValue(setpar);
-    sendParamChangeMessageToListeners(4, setpar);
- 
-    setpar = mScorch->getParameterValue(8); 	
-    mState.getParameter("mid")->setValue(setpar);
-    sendParamChangeMessageToListeners(5, setpar);
- 
-    setpar = mScorch->getParameterValue(7); 	
-    mState.getParameter("bass")->setValue(setpar);
-    sendParamChangeMessageToListeners(6, setpar);
- 
-    setpar = mScorch->getParameterValue(13); 	
-    mState.getParameter("noisegate")->setValue(setpar);
-    sendParamChangeMessageToListeners(7, setpar);	
- 
-    setpar = mScorch->getParameterValue(12); 	
-    mState.getParameter("noiseon")->setValue(setpar);
-    sendParamChangeMessageToListeners(9, setpar);
- 
-    setpar = mScorch->getParameterValue(5); 	
-    mState.getParameter("bright")->setValue(setpar);
-    sendParamChangeMessageToListeners(11, setpar);
- 
-    setpar = mScorch->getParameterValue(3); 	
-    mState.getParameter("boost")->setValue(setpar);
-    sendParamChangeMessageToListeners(10, setpar); 
- 
-    setpar = mScorch->getParameterValue(6); 	
-    mState.getParameter("ampstages")->setValue(setpar);
-    sendParamChangeMessageToListeners(8, setpar);	
-    */
 }
 
 const String ScorchAmpAudioProcessor::getProgramName (int index)
-{
-	/*
-	char name[2048];
-	
-	memset(name, 0, 2048);
-	
-    mScorch->getProgramNameIndexedx (0, index, name); 
-
-    retval = name;
-	
-    return retval;
-    */
-    
+{    
     return {};
 }
 
@@ -303,7 +211,7 @@ void ScorchAmpAudioProcessor::changeProgramName (int index, const String& newNam
 
 void ScorchAmpAudioProcessor::parameterChanged(const String& parmID, float newValue)
 {
-	float newValue2;
+    float newValue2;
 		
     if (parmID == "master")
     {
@@ -333,12 +241,6 @@ void ScorchAmpAudioProcessor::parameterChanged(const String& parmID, float newVa
     {
         mScorch->setParameterValue(2, newValue);
     }
-    /*
-    else if (parmID == "noisegate")
-    {
-        mScorch->setParameterValue(13, newValue);
-    }   
-    */  
     else if (parmID == "heavy")
     {
         mScorch->setParameterValue(10, newValue);
@@ -355,13 +257,7 @@ void ScorchAmpAudioProcessor::parameterChanged(const String& parmID, float newVa
     {
         mScorch->setParameterValue(11, newValue);
     }     
-    /*          
-    else if (parmID == "ampstages")
-    {
-		newValue2 = newValue / 10.0;
-        mScorch->setParameterValue(6, newValue2);
-    }  
-  */                                 
+               
 }
 
 void ScorchAmpAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)

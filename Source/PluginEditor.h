@@ -76,13 +76,8 @@ private:
 	
 	Slider ScorchBassSlider;
 	std::unique_ptr<SliderAttachment> ScorchBassSliderAttachment;
-
-	Slider ScorchNoiseGateSlider;
-	std::unique_ptr<SliderAttachment> ScorchNoiseGateSliderAttachment;
 	
     void sliderValueChanged (Slider* slider) override;
     
-    ComboBox AmpStageMenu;
-
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScorchAmpAudioProcessorEditor)
 };

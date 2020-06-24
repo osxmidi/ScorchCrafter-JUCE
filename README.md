@@ -23,6 +23,15 @@ Channels 7, 8, 9
 Uses 4 simulated tube overdrive passes
 High-gain overdrive
 
+--------
+
+To make
+
+Some libraries need to be preinstalled
+
+sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
+
+(also webkit2gtk-4.0 if using webkit)
 
 
 

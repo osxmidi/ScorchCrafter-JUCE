@@ -1,0 +1,3 @@
+g++ -O3 -c -I../ -I../dist -I../eq -fPIC -fvisibility=hidden -ffast-math -finline-functions -fno-math-errno -ffinite-math-only -fno-rounding-math -fno-signaling-nans -fno-trapping-math -fno-signed-zeros -fno-rtti -fno-exceptions -Wno-write-strings -Wno-narrowing *.cpp
+ 
+ar -rcs dist.a *.o

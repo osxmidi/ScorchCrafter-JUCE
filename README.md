@@ -33,6 +33,8 @@ sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-d
 
 (also webkit2gtk-4.0 if using webkit)
 
+cd into Builds/LinuxMakefile and run make CONFIG=Release
+
 
 
 

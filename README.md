@@ -3,7 +3,7 @@
 
 ScorchC120 Amp Sim for JUCE.
 
-Dual Core core (or more) systems recommended.
+Dual Core (or more) systems recommended.
 
 Does not include cabinets.
 

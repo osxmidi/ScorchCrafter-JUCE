@@ -38,10 +38,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "ScorchCrafter"
+ #define JucePlugin_Name                   "ScorchC120"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "ScorchCrafter"
+ #define JucePlugin_Desc                   "ScorchC120"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "Scorch"
@@ -98,10 +98,10 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         ScorchCrafterAU
+ #define JucePlugin_AUExportPrefix         ScorchC120AU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "ScorchCrafterAU"
+ #define JucePlugin_AUExportPrefixQuoted   "ScorchC120AU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
@@ -149,7 +149,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "Scorch: ScorchCrafter"
+ #define JucePlugin_IAAName                "Scorch: ScorchC120"
 #endif
 #ifndef  JucePlugin_VSTNumMidiInputs
  #define JucePlugin_VSTNumMidiInputs       16

@@ -633,41 +633,16 @@ void getProgramNamex (char* name)
 
 bool getProgramNameIndexedx (uint32_t category, uint32_t index, char* text) 
 {
-	/*
-	if ( !Params )
-	return false;
-
-	Params->GetPresetName( tmpName, 127, (u32) index );
-
-	strncpy(text, tmpName, kVstMaxProgNameLen);
-
-	return true;
-	*/
+return false;
 }
 
 uint32_t getProgramx() 
 {
-/*
-	if ( !Params )
-	return 0;
-
-	return (u32) Params->GetCurrentPreset();
-	*/
+return 0;
 }
 
 void setParameterValue(uint32_t index, float value) 
-{
-		/*
-	if ( (!Plg) || (!Params) )
-		return;
-
-        if((index == 0) || (index == 1))
-                return;
-
-	Plg->SetParameter( (f64) value, (u32) index );
-	Params->SetParameter( (u32) index, (f64) value );
-	*/
-	
+{	
 	if(index < kMaxNumParameters)	
 	params[index] = value;
 }
@@ -677,7 +652,8 @@ float getParameterValue(uint32_t index)
 	float val = float (0.0f);
 
 	//! If we're getting the value of a valid paramter, get that value
-	if(index < kMaxNumParameters) val=float (params[index]);
+	if(index < kMaxNumParameters) 
+	val=float (params[index]);
 
 	return float (val);				
 }

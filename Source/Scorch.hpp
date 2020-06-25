@@ -571,35 +571,30 @@ public:
 
 void run(const float** inputs, float** outputs, uint32_t sampleFrames)
 {
-	/*
-	float* in1  = (float *)inputs[0];
-    float* out1 = outputs[0];
-    float* out2 = outputs[1];
-*/
-	//! Placed out-side the main FX code, to speed things up - We don't need to update this
-	//! for every friggin sample, placed here it should be often enough.
+   //! Placed out-side the main FX code, to speed things up - We don't need to update this
+   //! for every friggin sample, placed here it should be often enough.
 	
     CheckParams();
     
-      uint32_t  sfr = 0;
+    uint32_t  sfr = 0;
       
-    		while (sfr < sampleFrames)
-		{
+    while (sfr < sampleFrames)
+    {
+    inputFloat = (float) inputs[0][sfr];
+
+    RunFX(inputFloat);
 	
-				inputFloat = (float) inputs[0][sfr];
+    outputs[0][sfr] = (float) outputFloatL;
+    outputs[0][sfr] = (float) outputFloatR;
+ 
+    sfr++;
+    }
 
-			RunFX(inputFloat);
-	
+/*	
+    float* in1  = (float *)inputs[0];
+    float* out1 = outputs[0];
+    float* out2 = outputs[1];
 
-			//for (int chan = 0; chan < 2; chan++)
-				outputs[0][sfr] = (float) outputFloatL;
-				outputs[0][sfr] = (float) outputFloatR;
-				
-
-			sfr++;
-		}
-
-/*
     while (--sampleFrames >= 0)
     {
     //	inputFloat = float (*in1++);
@@ -621,9 +616,8 @@ void run(const float** inputs, float** outputs, uint32_t sampleFrames)
 		(*out1++) = float (outputFloatL);
 		(*out2++) = float (outputFloatR);
 		
-    }
-    * 
-    * */
+    }    
+    */
     
 }	
 

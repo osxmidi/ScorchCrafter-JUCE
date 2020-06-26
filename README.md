@@ -23,6 +23,10 @@ Channels 7, 8, 9
 Uses 4 simulated tube overdrive passes
 High-gain overdrive
 
+-------
+
+There is also ScorchCrafter C120 at the ScorchC120-JUCE branch https://github.com/osxmidi/ScorchCrafter-JUCE/tree/ScorchC120-JUCE
+
 --------
 
 To make

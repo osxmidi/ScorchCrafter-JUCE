@@ -27,7 +27,7 @@ The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-por
 
 sudo apt-get install lv2-dev
 
-Copy the JUCE modules folder to the JuceLibraryCode folder
+Copy/replace the JUCE modules folder to the JuceLibraryCode folder
 
 Unzip the lv2.zip file in the Builds/LinuxMakefile folder and copy the Makefile to the Builds/LinuxMakefile folder
 

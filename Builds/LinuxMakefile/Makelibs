@@ -1,0 +1,10 @@
+cd ../../common
+chmod +x makelib
+./makelib
+cd eq
+chmod +x makelib
+./makelib
+cd ..
+cd dist
+chmod +x makelib
+./makelib

@@ -1,0 +1,10 @@
+cd ../../common
+rm *.o
+rm *.a
+cd eq
+rm *.o
+rm *.a
+cd ..
+cd dist
+rm *.o
+rm *.a

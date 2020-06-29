@@ -63,4 +63,4 @@ copy lv2_ttl_generator and lvmake and makelv2 (might need a chmod +x to make the
 
 ./makelv2
 
-
+Some versions of Ardour 5 might contain a problem with loading the presets resulting in a crash, Ardour 6 is ok 

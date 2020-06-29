@@ -1,7 +1,7 @@
 # ScorchC120-Juce
 
 
-ScorchC120 Amp Sim for JUCE.
+ScorchC120 Amp Sim for JUCE (short demo at https://soundcloud.com/aaabii/test)
 
 Dual Core (or more) systems recommended.
 

@@ -1,7 +1,7 @@
 # ScorchCrafter-Juce
 
 
-ScorchCrafter Amp Sim for JUCE.
+ScorchCrafter Amp Sim for JUCE (short demo at https://soundcloud.com/aaabii/test)
 
 Quad core (or more) systems recommended.
 

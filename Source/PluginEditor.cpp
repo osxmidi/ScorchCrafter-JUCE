@@ -21,45 +21,31 @@ void ScorchAmpAudioProcessorEditor::sliderValueChanged (Slider* slider)
 	
 	if(slider == &ScorchMasterSlider)
 	{
-	      mState.getParameter("master")->beginChangeGesture();
           mState.getParameter("master")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("master")->endChangeGesture();
 	}
 	else if(slider == &ScorchGainSlider)
 	{
-	      mState.getParameter("gain")->beginChangeGesture();
           mState.getParameter("gain")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("gain")->endChangeGesture();
 	}
 	else if(slider == &ScorchContourSlider)
 	{
-	      mState.getParameter("contour")->beginChangeGesture();
           mState.getParameter("contour")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("contour")->endChangeGesture();
 	}		
 	else if(slider == &ScorchPresenceSlider)
 	{
-	      mState.getParameter("presence")->beginChangeGesture();
           mState.getParameter("presence")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("presence")->endChangeGesture();
 	}	
 	else if(slider == &ScorchTrebleSlider)
 	{
-	      mState.getParameter("treble")->beginChangeGesture();
           mState.getParameter("treble")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("treble")->endChangeGesture();
 	}	
 	else if(slider == &ScorchMidSlider)
 	{
-	      mState.getParameter("mid")->beginChangeGesture();
           mState.getParameter("mid")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("mid")->endChangeGesture();
 	}	
 	else if(slider == &ScorchBassSlider)
 	{
-	      mState.getParameter("bass")->beginChangeGesture();
           mState.getParameter("bass")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("bass")->endChangeGesture();
 	}	
 
 }
@@ -82,9 +68,7 @@ void ScorchAmpAudioProcessorEditor::updateToggleState (Button* button, String na
 	auto state = button->getToggleState();
 		
 	mState.getParameter("bright")->setValue(state);	
-	mState.getParameter("bright")->beginChangeGesture();
-    mState.getParameter("bright")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("bright")->endChangeGesture();	  
+    mState.getParameter("bright")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);  
     }		
 
 }
@@ -97,9 +81,7 @@ void ScorchAmpAudioProcessorEditor::updateToggleState2 (Button* button, String n
 	auto state = button->getToggleState();
 		
     mState.getParameter("boost")->setValue(state);	
-    mState.getParameter("boost")->beginChangeGesture();
-    mState.getParameter("boost")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("boost")->endChangeGesture();	  
+    mState.getParameter("boost")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);  
 	}		
 
 }   
@@ -111,19 +93,15 @@ void ScorchAmpAudioProcessorEditor::updateToggleState3 (Button* button, String n
 	{				
 	auto state = button->getToggleState();
 			
-	mState.getParameter("heavy")->setValue(state);	
-	mState.getParameter("heavy")->beginChangeGesture();
-    mState.getParameter("heavy")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("heavy")->endChangeGesture();	  
+    mState.getParameter("heavy")->setValue(state);
+    mState.getParameter("heavy")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);  
  
     if(mState.getParameter("clean")->getValue()	== 1.0)
     {  
 	cleanButton.setToggleState (false, dontSendNotification); 
 	
     mState.getParameter("clean")->setValue(0.0);	
-    mState.getParameter("clean")->beginChangeGesture();
-    mState.getParameter("clean")->setValueNotifyingHost (0.0f);
-    mState.getParameter("clean")->endChangeGesture();	           			
+    mState.getParameter("clean")->setValueNotifyingHost (0.0f);           			
 	 }
 	
     }		
@@ -137,19 +115,15 @@ void ScorchAmpAudioProcessorEditor::updateToggleState4 (Button* button, String n
 	{			
 	auto state = button->getToggleState();
 		
-	mState.getParameter("clean")->setValue(state);	
-	mState.getParameter("clean")->beginChangeGesture();
-    mState.getParameter("clean")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("clean")->endChangeGesture();	  
+	mState.getParameter("clean")->setValue(state);
+    mState.getParameter("clean")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);  
     
     if(mState.getParameter("heavy")->getValue()	== 1.0)
     {    	
     heavyButton.setToggleState (false, dontSendNotification);
 
     mState.getParameter("heavy")->setValue(0.0);	
-    mState.getParameter("heavy")->beginChangeGesture();
     mState.getParameter("heavy")->setValueNotifyingHost (0.0f);
-    mState.getParameter("heavy")->endChangeGesture();	
     }      
       
 	}		

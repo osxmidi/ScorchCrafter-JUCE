@@ -21,51 +21,35 @@ void ScorchAmpAudioProcessorEditor::sliderValueChanged (Slider* slider)
 	
 	if(slider == &ScorchMasterSlider)
 	{
-	      mState.getParameter("master")->beginChangeGesture();
           mState.getParameter("master")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("master")->endChangeGesture();
 	}
 	else if(slider == &ScorchGainSlider)
 	{
-	      mState.getParameter("gain")->beginChangeGesture();
           mState.getParameter("gain")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("gain")->endChangeGesture();
 	}
 	else if(slider == &ScorchContourSlider)
 	{
-	      mState.getParameter("contour")->beginChangeGesture();
           mState.getParameter("contour")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("contour")->endChangeGesture();
 	}		
 	else if(slider == &ScorchPresenceSlider)
 	{
-	      mState.getParameter("presence")->beginChangeGesture();
           mState.getParameter("presence")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("presence")->endChangeGesture();
 	}	
 	else if(slider == &ScorchTrebleSlider)
 	{
-	      mState.getParameter("treble")->beginChangeGesture();
           mState.getParameter("treble")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("treble")->endChangeGesture();
 	}	
 	else if(slider == &ScorchMidSlider)
 	{
-	      mState.getParameter("mid")->beginChangeGesture();
           mState.getParameter("mid")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("mid")->endChangeGesture();
 	}	
 	else if(slider == &ScorchBassSlider)
 	{
-	      mState.getParameter("bass")->beginChangeGesture();
           mState.getParameter("bass")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("bass")->endChangeGesture();
 	}	
 	else if(slider == &ScorchNoiseGateSlider)
 	{
-	      mState.getParameter("noisegate")->beginChangeGesture();
           mState.getParameter("noisegate")->setValueNotifyingHost ((float) slider->getValue());
-          mState.getParameter("noisegate")->endChangeGesture();
 	}	
 
 }
@@ -87,10 +71,8 @@ void ScorchAmpAudioProcessorEditor::updateToggleState (Button* button, String na
     {
 	auto state = button->getToggleState();
 		
-	mState.getParameter("bright")->setValue(state);	
-	mState.getParameter("bright")->beginChangeGesture();
+    mState.getParameter("bright")->setValue(state);	
     mState.getParameter("bright")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("bright")->endChangeGesture();	  
     }		
 
 }
@@ -103,9 +85,7 @@ void ScorchAmpAudioProcessorEditor::updateToggleState2 (Button* button, String n
 	auto state = button->getToggleState();
 		
     mState.getParameter("boost")->setValue(state);	
-    mState.getParameter("boost")->beginChangeGesture();
-    mState.getParameter("boost")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("boost")->endChangeGesture();	  
+    mState.getParameter("boost")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);	  
 	}		
 
 }   
@@ -117,10 +97,8 @@ void ScorchAmpAudioProcessorEditor::updateToggleState3 (Button* button, String n
 	{
 	auto state = button->getToggleState();
 		
-	mState.getParameter("noiseon")->setValue(state);	
-	mState.getParameter("noiseon")->beginChangeGesture();
-    mState.getParameter("noiseon")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);
-    mState.getParameter("noiseon")->endChangeGesture();	  			
+    mState.getParameter("noiseon")->setValue(state);	
+    mState.getParameter("noiseon")->setValueNotifyingHost (button->getToggleState() ? 1.0f : 0.0f);			
 	}		
 
 }     
@@ -176,9 +154,7 @@ void ScorchAmpAudioProcessorEditor::AmpStageMenuChanged()
         break;                                                                                            
     }
 	
-	mState.getParameter("ampstages")->beginChangeGesture();
         mState.getParameter("ampstages")->setValueNotifyingHost (mState.getParameter("ampstages")->getValue());
-        mState.getParameter("ampstages")->endChangeGesture();
 
 }    
 

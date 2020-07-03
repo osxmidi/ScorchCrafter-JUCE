@@ -70,12 +70,12 @@ public:
 	isOnline = true;
 	isOnlineOld = true;
 
-    isRunningStereo = true;
-    isRunningStereoOld = true;
-	 //isRunningStereo = false;
-	// isRunningStereoOld = false;
+  //  isRunningStereo = true;
+  //  isRunningStereoOld = true;
+	 isRunningStereo = false;
+	 isRunningStereoOld = false;
 
-	C120Amp->SetIntParam(ScPrmI_OverSampling_Rate, SCv_OverSampling_2x);
+	C120Amp->SetIntParam(ScPrmI_OverSampling_Rate, SCv_OverSampling_4x);
 	C120Amp->SetIntParam(ScPrmI_FP_Precision_Bit_Depth, SCv_Bit_Depth_64);
 	C120Amp->SetFpParam(ScPrmF_Drive_Gain, params[kGainControl]);
 	C120Amp->SetFpParam(ScPrmF_Master_Volume, params[kMasterVol]);
@@ -581,8 +581,17 @@ void run(const float** inputs, float** outputs, uint32_t sampleFrames)
     while (sfr < sampleFrames)
     {
     inputFloat = (float) inputs[0][sfr];
+    
+	//! Safety measure, this will happily CLIP any input that is too loud
+    if(float (inputFloat) > float (1.00f)) inputFloat = float (1.00f);
+	if(float (inputFloat) < float (-1.00f)) inputFloat = float (-1.00f);    
 
     RunFX(inputFloat);
+    
+	//! The next lines are for just in case something goes very wrong and a profoundly LOUD
+	//! noise comes out of the FX code, this is a safety measure
+	outputFloatL = (float) fminf(4.0f, fmaxf(-4.0f, outputFloatL));
+	outputFloatR = (float) fminf(4.0f, fmaxf(-4.0f, outputFloatR));    
 	
     outputs[0][sfr] = (float) outputFloatL;
     outputs[0][sfr] = (float) outputFloatR;

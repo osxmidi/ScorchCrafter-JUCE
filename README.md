@@ -51,7 +51,7 @@ Automation needs a few mods in the /JUCE/modules/juce_audio_plugin_client/LV2/ju
 
 search for ~JuceLv2Wrapper
 
-Insert just above the ~JuceLv2Wrapper () line the following
+Insert the following just above the ~JuceLv2Wrapper () line
 
     void setParameter (int32 index, float value)
     {

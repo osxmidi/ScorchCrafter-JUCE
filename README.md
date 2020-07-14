@@ -29,6 +29,25 @@ cd into Builds/LinuxMakefile and run make CONFIG=Release
 
 The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
 
+Automation needs a few mods in the /JUCE/modules/juce_audio_plugin_client/LV2/juce_LV2_Wrapper.cpp file (before copying the /JUCE/modules folder to the JuceLibraryCode folder)
+
+search for ~JuceLv2Wrapper
+
+Insert the following just above the ~JuceLv2Wrapper () line
+
+    void setParameter (int32 index, float value)
+    {
+    if (auto* param = filter->getParameters()[index])	
+    {
+    param->setValue(value);
+    param->sendValueChangedMessageToListeners (value);    
+	}
+    }  
+    
+then search for filter->setParameter and replace it with setParameter (leave the rest of the line as it is)
+
+...
+
 sudo apt-get install lv2-dev
 
 Copy/replace the JUCE modules folder to the JuceLibraryCode folder

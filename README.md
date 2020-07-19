@@ -76,19 +76,6 @@ sudo apt-get install lv2-dev
 
 Make the Projucer and save the project as above.
 
-Add
-
-```
-#ifndef  JucePlugin_MaxNumInputChannels
- #define JucePlugin_MaxNumInputChannels    2
-#endif
-#ifndef  JucePlugin_MaxNumOutputChannels
- #define JucePlugin_MaxNumOutputChannels   2
-#endif 
-
-```
-to the bottom of the JucePluginDefines.h file in the JuceLibraryCode folder
-
 Copy/replace the JUCE modules folder to the JuceLibraryCode folder
 
 Unzip the lv2.zip file in the Builds/LinuxMakefile folder and copy the Makefile to the Builds/LinuxMakefile folder

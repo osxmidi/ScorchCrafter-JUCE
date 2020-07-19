@@ -41,6 +41,8 @@ search for ~JuceLv2Wrapper
 
 Insert the following just above the ~JuceLv2Wrapper () line
 
+```
+
     void setParameter (int32 index, float value)
     {
     if (auto* param = filter->getParameters()[index])	
@@ -52,7 +54,7 @@ Insert the following just above the ~JuceLv2Wrapper () line
     
 then search for filter->setParameter and replace it with setParameter (leave the rest of the line as it is)
 
-...
+```
 
 sudo apt-get install lv2-dev
 
@@ -60,14 +62,16 @@ Make the Projucer and save the project as above.
 
 Add
 
-'''
+
+```
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    2
 #endif
 #ifndef  JucePlugin_MaxNumOutputChannels
  #define JucePlugin_MaxNumOutputChannels   2
 #endif 
-'''
+
+```
 
 to the bottom of the JucePluginDefines.h file in the JuceLibraryCode folder
 

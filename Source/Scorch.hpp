@@ -594,7 +594,7 @@ void run(const float** inputs, float** outputs, uint32_t sampleFrames)
 	outputFloatR = (float) fminf(4.0f, fmaxf(-4.0f, outputFloatR));    
 	
     outputs[0][sfr] = (float) outputFloatL;
-    outputs[0][sfr] = (float) outputFloatR;
+    outputs[1][sfr] = (float) outputFloatR;
  
     sfr++;
     }

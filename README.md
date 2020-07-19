@@ -35,6 +35,12 @@ Rename the unzipped JUCE folder to JUCE and move it to the home folder
 
 Unzip this repository/clone inside the JUCE folder
 
+To make the Projucer change into ~/JUCE/extras/Projucer/Builds/LinuxMakefile then make CONFIG=Release
+
+Run the Projucer and load the jucer file in the unzipped folder and save the project
+
+Open and save the Makefile-optimise file in the Builds/LinuxMakefile folder as Makefile
+
 Some libraries need to be preinstalled
 
 sudo apt-get -y install git pkg-config libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev mesa-common-dev libasound2-dev freeglut3-dev libxcomposite-dev libcurl4-gnutls-dev
@@ -67,6 +73,19 @@ then search for filter->setParameter and replace it with setParameter (leave the
 ...
 
 sudo apt-get install lv2-dev
+
+Make the Projucer and save the project as above.
+
+Add
+
+#ifndef  JucePlugin_MaxNumInputChannels
+ #define JucePlugin_MaxNumInputChannels    2
+#endif
+#ifndef  JucePlugin_MaxNumOutputChannels
+ #define JucePlugin_MaxNumOutputChannels   2
+#endif 
+
+to the bottom of the JucePluginDefines.h file in the JuceLibraryCode folder
 
 Copy/replace the JUCE modules folder to the JuceLibraryCode folder
 

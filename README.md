@@ -60,12 +60,14 @@ Make the Projucer and save the project as above.
 
 Add
 
+'''
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    2
 #endif
 #ifndef  JucePlugin_MaxNumOutputChannels
  #define JucePlugin_MaxNumOutputChannels   2
 #endif 
+'''
 
 to the bottom of the JucePluginDefines.h file in the JuceLibraryCode folder
 

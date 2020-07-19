@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="HBIdP9" name="ScorchC120" projectType="audioplug" jucerVersion="5.4.3"
-              pluginFormats="buildVST3" pluginManufacturer="Scorch">
+<JUCERPROJECT id="HBIdP9" name="ScorchC120" projectType="audioplug" pluginFormats="buildVST3"
+              pluginManufacturer="Scorch" pluginChannelConfigs="{2, 2}" jucerFormatVersion="1">
   <MAINGROUP id="GofTF8" name="ScorchC120">
     <GROUP id="{1E735326-50E9-E20E-FF2C-E14D3C177F79}" name="Source">
       <FILE id="nLsH57" name="PluginProcessor.cpp" compile="1" resource="0"

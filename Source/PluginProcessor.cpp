@@ -2,9 +2,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
+ScorchAmpAudioProcessor::ScorchAmpAudioProcessor() :
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+     AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  AudioChannelSet::stereo(), true)
@@ -12,6 +12,7 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
                        ),
+                     #endif
 	    mState(*this, nullptr, Identifier("ScorchC120"),
 		{
 			  std::make_unique<AudioParameterFloat>("master",
@@ -71,8 +72,6 @@ ScorchAmpAudioProcessor::ScorchAmpAudioProcessor()
 		})
 //		}),
 //mScorch()
-
-#endif
 { 
 	
     mScorch = new ScC120();

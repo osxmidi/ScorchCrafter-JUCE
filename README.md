@@ -58,8 +58,6 @@ vst3 is installed into ~/.vst3
 
 The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
 
-The lv2 version needs JUCE lv2 from the lv2 branch at https://github.com/lv2-porting-project/JUCE
-
 Install the lv2 development files.
 sudo apt-get install lv2-dev or sudo pacman -Sy lv2 for Manjaro
 
@@ -81,7 +79,7 @@ copy lv2_ttl_generator and lvmake and makelv2 (might need a chmod +x to make the
 
 ----------
 
-lv2 Automation needs a few mods in the /JUCE/modules/juce_audio_plugin_client/LV2/juce_LV2_Wrapper.cpp file (before copying the /JUCE/modules folder to the JuceLibraryCode folder)
+lv2 automation needs a few mods in the /JUCE/modules/juce_audio_plugin_client/LV2/juce_LV2_Wrapper.cpp file (before copying the /JUCE/modules folder to the JuceLibraryCode folder)
 
 search for ~JuceLv2Wrapper
 

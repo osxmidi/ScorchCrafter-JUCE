@@ -75,7 +75,7 @@ then
 
 cd build
 
-copy lv2_ttl_generator and lvmake and makelv2 (might need a chmod +x to make them executable) from the unzipped lv2.zip to the build folder
+copy lv2_ttl_generator and lvmake and makelv2 (might need a chmod +x to make them executable) from the unzipped lv2.zip file to the build folder
 
 ./makelv2
 

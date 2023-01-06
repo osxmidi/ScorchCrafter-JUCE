@@ -77,6 +77,10 @@ copy lv2_ttl_generator and lvmake and makelv2 (might need a chmod +x to make the
 
 ./makelv2
 
+lvmake is a renamed lv2_ttl_generator binary.
+
+Using g++ lv2_ttl_generator.c -o lvmake should make lvmake
+
 ----------
 
 lv2 automation needs a few mods in the /JUCE/modules/juce_audio_plugin_client/LV2/juce_LV2_Wrapper.cpp file (before copying the /JUCE/modules folder to the JuceLibraryCode folder)
